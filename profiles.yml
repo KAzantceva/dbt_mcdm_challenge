@@ -1,0 +1,15 @@
+config:
+  send_anonymous_usage_stats: false
+
+default:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: long-carving-385411
+      dataset: ads_data
+      threads: 1
+      timeout_seconds: 300
+      keyfile: C:/Users/Карина/Documents/GitHub/dbt_mcdm_challenge/dbt_credentials/long-carving-385411-4bbd62d22fcf.json
+

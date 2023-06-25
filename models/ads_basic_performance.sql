@@ -1,0 +1,21 @@
+SELECT
+  ad_id,
+  adset_id,
+  campaign_id,
+  channel,
+  clicks,
+  date,
+  spend,
+  title_part_2,
+  comments,
+  creative_id,
+  creative_title,
+  complete_registration,
+  purchase_value,
+  shares,
+  adgroup_id,
+  text,
+  engagements,
+  likes,
+  retweets
+FROM ads_data.src_ads_basic_performance

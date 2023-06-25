@@ -1,0 +1,30 @@
+# models/sources.yml
+
+sources:
+  - name: src_ads_bing_all_data
+    database: long-carving-385411
+    schema: ads_data
+    tables:
+      - name: ads_bing_all_data
+        identifier: b
+
+  - name: src_ads_creative_facebook_all_data
+    database: long-carving-385411
+    schema: ads_data
+    tables:
+      - name: ads_creative_facebook_all_data
+        identifier: f
+
+  - name: src_ads_tiktok_ads_all_data
+    database: long-carving-385411
+    schema: ads_data
+    tables:
+      - name: ads_tiktok_ads_all_data
+        identifier: t
+
+  - name: src_promoted_tweets_twitter_all_data
+    database: long-carving-385411
+    schema: ads_data
+    tables:
+      - name: promoted_tweets_twitter_all_data
+        identifier: t

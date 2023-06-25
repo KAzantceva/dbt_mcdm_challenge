@@ -1,69 +1,57 @@
-# Marketing common data modelling challenge
-	Welcome to Marketing common data modelling challenge!
+# Добавление данных с новых рекламных площадок в MCDM
 
-## Task
-	At Improvado, we use marketing common data models (MCDM) to map data from various ad platforms into a single one. MCDM can help marketers with questions like: "Where clicks better on facebook or tiktok?"
+## Описание проекта
+Этот проект представляет собой реализацию процесса интеграции данных с новых рекламных площадок в MCDM (Marketing Campaign Data Mart). MCDM - это централизованное хранилище данных для анализа и отчетности рекламных кампаний.
 
-Imagine that MCDM-model behind dashboard, is lost somehow. You need to rebuilt it. You have:
-	— raw data from the ad systems (seeds folder),
-	- the MCDM table structure for this report, 
-	- and [dashboard](https://lookerstudio.google.com/reporting/fa668749-b82f-41a8-a12e-f7d9c0733b57/page/tEnnC)
+## Задача
+Наша задача заключалась в следующем:
+1. Идентифицировать новые рекламные площадки, с которых требуется получать данные.
+2. Создать соответствующие модели в dbt для интеграции данных из этих площадок в MCDM.
+3. Убедиться, что данные успешно загружаются и преобразуются в MCDM.
+4. Написать тесты для проверки корректности данных.
 
+## Выполненные шаги
+В рамках выполнения задачи мы выполнили следующие шаги:
 
-In this situation, we've got checklist that you can follow (or not):
-	- Begin a new project in dbt Cloud, utilizing Google Big Query as the DWH.
-	- Use the raw data from the ad platforms and the MCDM table structure for the ads_basic_performance report.
+1. Идентификация рекламных площадок:
+   - Провели анализ рекламных площадок и выбрали новые источники данных.
+   - Определили структуру данных и необходимые поля для интеграции.
 
-### How to Submit
-please provide answer in the [typeform](https://improvado.typeform.com/to/efqlu4kP)
--   A link to your dbt Cloud repository that contains the completed MCDM for the ads_basic_performance report.
--   A link to the recreated dashboard.
--   A brief set of instructions (in md file in your repo) for adding data from new ad platforms into your MCDM.
+2. Создание моделей в dbt:
+   - Добавили модели для каждой новой рекламной площадки в проекте dbt.
+   - Определили преобразования данных и связи с существующими моделями в MCDM.
 
-## Hints:
-	- *Cost per engage* is just a spended sum divided by sum of engagements
-	- *Conversion cost* is calculated by dividing sum of spended by total conversions count
-	- *Impressions by channel* is a sum of impressions for each channel
-	- *CPC* gets like sum of spended divided by clicks count
+3. Загрузка данных и преобразования:
+   - Настроили соединение с каждым источником данных.
+   - Разработали SQL-запросы для загрузки и преобразования данных.
+   - Убедились, что данные успешно интегрируются в MCDM.
 
-### Tools
-To complete this task, you might need the following tools:
--   dbt Cloud
--   Google Big Query
--   Google Looker Studio
+4. Написание тестов:
+   - Создали тесты для проверки корректности загруженных данных.
+   - Запустили автоматическое тестирование с использованием dbt.
 
-### Tool Instructions
-To help you get started, here are some resources on how to use the necessary tools:
--   dbt Courses:
-    -   [dbt Fundamentals](https://courses.getdbt.com/courses/fundamentals). Relevant chapters include:
-        -   Setting up dbt Cloud (17 minutes)
-        -   Models and Sources (40 minutes)
-        -   [dbt Cloud and BigQuery for Admins](https://courses.getdbt.com/courses/dbt-cloud-and-bigquery-for-admins) (35 minutes)
--   [How to Use Google BigQuery for FREE](https://levelup.gitconnected.com/how-to-use-google-bigquery-for-free-9c2a65e3a78c#)
-- How to create dashboard Google Looker Studio with Google Big Query
-		![](https://github.com/technomonah/dbt_mcdm_challenge/blob/main/how_to_export_gbq_to_looker.gif)
+## Как использовать проект
+Для использования проекта и интеграции новых рекламных площадок в MCDM, выполните следующие шаги:
 
+1. Клонируйте репозиторий:
+git clone <URL репозитория>
 
-### Additional Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- [Short overview](https://improvado.io/products/mcdm) for Improvado MCDM
+2. Установите зависимости:
+cd <папка проекта>
+pip install -r requirements.txt
 
-### How to Use the Repository
-This is the foundational repository for your project. Clone it and start your dbt Cloud from it.
+3. Настройте подключение к базе данных:
+- Отредактируйте файл `dbt_project.yml` и внесите необходимые изменения в секцию `profiles` для вашей базы данных.
 
-The repository includes raw data from various ad platforms, as well as the MCDM structure for the ads_basic_performance report, which are provided as seeds:
+4. Запустите процесс интеграции данных:
+dbt run
 
--   src_ads_bing_all_data
--   src_ads_creative_facebook_all_data
--   src_ads_tiktok_ads_all_data
--   src_promoted_tweets_twitter_all_data
--   mcdm_paid_ads_basic_performance_structure
+5. Запустите тестирование для проверки корректности данных:
+dbt test
 
-To build the seeds, run `dbt seed` in the dbt Cloud console. Once the seeds have been built, you can access the data using `ref()`. For example, you can use `select * from {{ ref('src_ads_bing_all_data')}}` to access data from the `src_ads_bing_all_data` seed.
+6. Проверьте результаты и убедитесь, что данные успешно загружены в MCDM и тесты прошли без ошибок.
 
-### Q&A
-	Q: How to validate results for my model? 
-	A: Compare your dashboard with the dashboard from task. If some numbers doesn't match, then some fiels in your model got incorrect mapped  
+## Дополнительные ресурсы
+- [Документация по dbt](https://docs.getdbt.com/)
+- [Примеры использования dbt](https://github.com/dbt-labs/)
 
-	Q: What if there're no MCDM sctructure field in raw datasource data?
-	A: So you started understending the main goal of this task :-)	Suggest wich field or fields corresponds to MCDM ones by their meaning. If there're no such fields, then probably datasource just doesnt got them
